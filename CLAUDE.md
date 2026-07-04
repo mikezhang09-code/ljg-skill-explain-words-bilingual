@@ -29,21 +29,21 @@ This is the spec — changes to behavior must preserve or deliberately revise th
 Each of the two language sections contains, in order:
 
 1. **Headword line** — `### {word}  /{IPA or pinyin}/  {中文释义}`
-2. `原始画面` / `Original Image` — most physical etymological image. **Chinese headwords must use 字形本源** (oracle-bone / component decomposition); Western headwords use Latin/Greek/Old English root imagery.
+2. `原始画面` / `Original Image` — most physical etymological image. **Any Chinese headword — including bridge headwords — must use 字形本源** (oracle-bone / component decomposition), never a carried-over Latin image; Western headwords use Latin/Greek/Old English root imagery.
 3. `核心意象` / `Core Metaphor` — an "X + Y = Z" formula.
 4. `边界` / `Boundary` — the word vs. its two nearest neighbors, one structural (not tonal) distinction each.
 5. `解释` / `Insight` — capped (解释 ≤250字, Insight ≤180 words), **bolded** keywords, must land on a universal adult experience.
 6. `场景` / `Scene` — a 30–40 word/字 lived micro-scene for which only this word fits (episodic memory hook, not an example sentence).
 7. `桥接损耗` / `Lost in the Bridge` — **optional bullet, at most once per entry**, emitted only in the section whose headword ≠ the user's input word (i.e. the bridged side), and only when the bridge is genuinely lossy. The section whose headword *is* the input word must never carry it. Bridge headwords must be real dictionary words (or accepted loanwords like *sajiao*) — never coinages.
-8. **一语道破 / epiphany** — one bilingual aphorism in a `>` blockquote. The two sections carry **distinct** aphorisms (different angles).
+8. **一语道破 / epiphany** — one aphorism in a `>` blockquote, **always a bilingual pair** (one English sentence + one Chinese sentence in the same blockquote; monolingual quotes are a format violation). The two sections carry **distinct** aphorisms (different angles).
 
-`## 印刻` (Imprint) closes every entry: one 24-hour **retrieval challenge** (generation effect — user must find/name/use the word in their own life), expressed in one Chinese line + one English line.
+`## 印刻` (Imprint) closes every entry: one 24-hour **retrieval challenge** (generation effect — user must find/name/use the word in their own life), expressed in one Chinese line + one English line. The challenge must be generated from the word's own imagery — generic challenges reused across words are a violation.
 
 **Cross-language / reverse lookup:** when input and section language differ, that section uses the truest equivalent word as its headword (Chinese input `缘分` → English section may list 1–3 candidates, then deep-dives one, e.g. *serendipity*). Same-language sections never carry the bridge-loss bullet.
 
 **Etymology honesty rule:** disputed or folk etymologies must be flagged ("一说 / disputed"), never invented — this extends to *components*: a plain suffix (面子's 子) must not be assigned a fabricated meaning, and motivational-myth readings (危机 = "danger + opportunity", sincere = *sine cera*) are banned from every bullet. Trust-critical for a dictionary product.
 
-**Aphorism originality rule:** the 一语道破 blockquotes must be original. Famous quotes (Emerson, Thoreau, proverbs) may not be passed off unattributed; if quoted at all, attribute, max once per entry.
+**Aphorism originality rule:** the 一语道破 blockquotes must be original. Famous quotes (Emerson, Thoreau, proverbs) may not be passed off unattributed — nor may unattributed *riffs* on famous lines (e.g. opening with Hartley's "The past is a foreign country"); if quoted at all, attribute, max once per entry.
 
 **Refusal guard:** if the skill is invoked (even explicitly) on a multi-word concept (机会成本, "compound interest"), it must not produce an entry — it emits one line redirecting to `ljg-explain-concept` and stops.
 
