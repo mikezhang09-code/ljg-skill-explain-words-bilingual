@@ -26,8 +26,10 @@ Assistant: [Calls ljg-explain-words-bilingual with "缘分"]
 3. 无论输入是哪种语言，都输出**两个平行区块**：「中文」与「English」。两者是**同一意义的两次母语级解构**，不是互相翻译——中文版以汉语思维和意象写就，English 版以词源（Latin / Greek / Old English）和英语习惯写就。
 4. 跨语言桥接（reverse lookup）——找出最贴切的对应词：
    - 输入英文 → 「中文」区块的标题行给出最贴切的中文表达作为桥接词。
-   - 输入中文 → 「English」区块选出最准的英文词（必要时列 1–3 个候选，再挑一个做母语级解构）。例：缘分 → *serendipity / affinity / fated connection*。
-5. **中文字源**：当某区块的标题词是汉字词时，其「原始画面」必须从**字形本源**出发（甲骨文 / 金文 / 构件拆解，如：执——跪着的人双手戴枷；念——今 + 心，压在心上的当下之思）。不要用英语词源思维套在汉字上。
+   - 输入中文 → 「English」区块先列 1–3 个候选，再挑一个做母语级解构。例：缘分 → *serendipity / affinity / fated connection*。
+   - 桥接词必须是**词典里真实存在的词**，不得为桥接而造词（❌ 乡愁病）。若确无对等词，明说"无完全对等"，可采用已被目标语言学界接受的借词（如 *sajiao*）。
+5. **多词输入拒答**：即使被显式调用，若输入是多词概念或术语（如"机会成本"、"compound interest"），**不要生成词条**——用一句话说明本技能只解剖单个词，请改用 `ljg-explain-concept`，然后停止。
+6. **中文字源**：当某区块的标题词是汉字词时，其「原始画面」必须从**字形本源**出发（甲骨文 / 金文 / 构件拆解，如：执——跪着的人双手戴枷；念——今 + 心，压在心上的当下之思）。不要用英语词源思维套在汉字上。
 
 ### 输出结构 Output structure
 
@@ -42,7 +44,7 @@ Assistant: [Calls ljg-explain-words-bilingual with "缘分"]
 - **边界**：{词} ≠ {最近的邻居1}（一句锋利的话切开）；≠ {邻居2}（同样一句切开）。掌握一个词，一半在于知道它**不是**什么。
 - **解释**：≤250字。用充满洞见的中文阐述其深层含义与现代用法，**加粗**关键词，收尾必须落到一种成年人共通的处境（事业、爱、失去、野心、衰老）。
 - **场景**：30–40字的成人生活微场景——不是例句，是一个读者亲身经历过的瞬间，且**只有这个词**能形容它。
-- **桥接损耗**（可选，仅当本区块标题词是桥接词时）：一句话说明这个对应词漏掉了原词的什么。
+- **桥接损耗**（条件项——先自问：本区块标题词是否**就是用户输入的词**？是 → 此项**禁止出现**；否（标题词是桥接词）且桥接确有损耗 → 一句话说明对应词漏掉了原词的什么）。
 
 > "English aphorism. 中文金句。"
 
@@ -55,7 +57,7 @@ Assistant: [Calls ljg-explain-words-bilingual with "缘分"]
 - **Boundary**: {word} is not {nearest neighbor 1} (one blade-sharp clause); not {neighbor 2} (one more). Half of mastery is knowing what the word is **not**.
 - **Insight**: ≤180 words. Trace the **etymology** (Latin / Greek / Old English roots), connect senses across domains, **bold** the load-bearing words, and land the final sentence on a universal adult experience.
 - **Scene**: a 30–40 word micro-scene from adult life — not an example sentence, but a lived moment for which **only this word** will do.
-- **Lost in the Bridge** (optional; only when this section's headword is a bridge word): one line on what the equivalent fails to carry over.
+- **Lost in the Bridge** (conditional — first ask: is this section's headword **the very word the user typed**? If yes → this bullet is **forbidden**; if no (the headword is a bridge word) and the bridge is genuinely lossy → one line on what the equivalent fails to carry over).
 
 > "English aphorism. 中文金句。"
 
@@ -67,7 +69,11 @@ Assistant: [Calls ljg-explain-words-bilingual with "缘分"]
 ### 注意 Notes
 
 - **各自为刃**：两个区块的「一语道破」金句必须从**不同角度**切入，不得重复；「原始画面」「场景」也应各自母语原生，不是互译。
-- **词源诚实**：词源存疑、有争议或属民间讹传（folk etymology）时，必须明说"一说 / disputed"，宁可承认不确定，不可编造画面。一个虚构的词源会毒化整本词典的信任。
+- **词源诚实**：词源存疑、有争议或属民间讹传（folk etymology）时，必须明说"一说 / disputed"，宁可承认不确定，不可编造画面。一个虚构的词源会毒化整本词典的信任。三条铁律：
+  1. **不给平凡构件发明含义**。例："面子"的"子"只是名词后缀（同"桌子"），不是"表层覆盖物"；构件没故事就承认没故事，画面从有故事的构件（面）取。
+  2. **传统训释 ≠ 定论**。如"独"从犬的兽行说，标"传统训释/一说"。
+  3. **拒绝励志学讹传**。例：sincere ≠ *sine cera*（无蜡）；"危机"的"机"是弩机/枢机（触发之枢），**不是** opportunity——"危险+机会"的读法禁止进入任何一个 bullet，包括桥接损耗。
+- **金句必须原创**：「一语道破」不得把他人名言不署名地充作原创（❌ 爱默生的"嫉妒是卓越之税"、梭罗的"any thing 的真实代价是你用于交换的人生"）。确要引用，署名并全条至多一处；默认自铸。
 - **长度纪律**：印象是一次打击，不是一堂课。解释 ≤250字，Insight ≤180 words，场景/Scene 控制在 30–40 字/词。删到不能再删。
 - **边界要见血**：近邻对比不许用"程度不同""语气更强"这类温吞话，必须给出结构性的区分（谁握着谁、谁喂养谁、谁先谁后）。
-- 同语种解释时（如英文输入的 English 区块）标题词就是原词，此时**不输出**桥接损耗；跨语种时用桥接词，桥接确有损耗才写，无损耗则省略。
+- **桥接损耗只在一侧**：整个词条中，桥接损耗/Lost in the Bridge **至多出现一次**，且只出现在"标题词 ≠ 用户输入词"的那个区块。自检：输入 envy → 「English」区块标题词就是 envy，禁止 Lost in the Bridge；「中文」区块标题词是桥接词"嫉妒"，可写桥接损耗。输入 孤独 → 反之。
