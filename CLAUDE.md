@@ -4,9 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-A **Claude Code Skill plugin** ("单词灵魂解剖师" / Word Soul Master) that deconstructs a single word — **English or Chinese** — into its core semantics and a bilingual epiphany. There is no application code, build, lint, or test — the entire product is a prompt. "Running" it means installing the plugin into Claude Code and invoking `/ljg-explain-words <word>`.
+A **Claude Code Skill plugin** ("单词灵魂解剖师" / Word Soul Master) that deconstructs a single word — **English or Chinese** — into its core semantics and a bilingual epiphany, engineered so the word **sticks in adult memory** (imagery + contrast + lived scene + retrieval). There is no application code, build, lint, or test — the entire product is a prompt. "Running" it means installing the plugin into Claude Code and invoking `/ljg-explain-words <word>`.
 
-The long-term plan (not yet built) is to wrap this skill in a dead-simple, Google-style single-box **mobile dictionary** app. Phase 1 (current) is making the skill bilingual; keep the skill's output structurally stable so it can later be parsed/cached into app cards without rework.
+The long-term plan (not yet built) is to wrap this skill in a dead-simple, Google-style single-box **mobile dictionary** app. Phase 1 (current) is the bilingual skill; keep the skill's output structurally stable so it can later be parsed/cached into app cards without rework.
 
 ## Repository layout
 
@@ -22,20 +22,31 @@ Install/usage (from README):
 /ljg-explain-words Serendipity
 ```
 
-## The output contract (SKILL.md body)
+## The output contract (SKILL.md body) — v2
 
-This is the spec — changes to behavior must preserve or deliberately revise this structure. Output is Markdown emitted directly into the conversation (no files, no HTML), authored as a "语言哲学大师" voice. The skill **auto-detects input language** and always emits **two parallel sections in a fixed order**, `## 中文` then `## English`. The two are *native deconstructions of the same meaning, not translations of each other*. Those two `##` headers are the stable split points the future app will parse on — keep them verbatim.
+This is the spec — changes to behavior must preserve or deliberately revise this structure. Output is Markdown emitted directly into the conversation (no files, no HTML), authored in a "语言哲学大师" voice with strict length discipline. The skill **auto-detects input language** and always emits **three sections in a fixed order**: `## 中文`, `## English`, `## 印刻`. The 中文/English pair are *native deconstructions of the same meaning, not translations of each other*. Those three `##` headers are the stable split points the future app will parse on — keep them verbatim.
 
-Each section contains:
+Each of the two language sections contains, in order:
 
 1. **Headword line** — `### {word}  /{IPA or pinyin}/  {中文释义}`
-2. **核心语义 / core semantics** — `原始画面` / `Original Image` (most physical etymological image) + `核心意象` / `Core Metaphor` (a "X + Y = Z" formula) + an insight-driven `解释` / `Insight` with **bolded** keywords (English side traces Latin/Greek/Old English roots).
-3. **一语道破 / epiphany** — one bilingual aphorism in a `>` blockquote. The two sections carry **distinct** aphorisms (different angles), not the same one twice.
+2. `原始画面` / `Original Image` — most physical etymological image. **Chinese headwords must use 字形本源** (oracle-bone / component decomposition); Western headwords use Latin/Greek/Old English root imagery.
+3. `核心意象` / `Core Metaphor` — an "X + Y = Z" formula.
+4. `边界` / `Boundary` — the word vs. its two nearest neighbors, one structural (not tonal) distinction each.
+5. `解释` / `Insight` — capped (解释 ≤250字, Insight ≤180 words), **bolded** keywords, must land on a universal adult experience.
+6. `场景` / `Scene` — a 30–40 word/字 lived micro-scene for which only this word fits (episodic memory hook, not an example sentence).
+7. `桥接损耗` / `Lost in the Bridge` — **optional bullet**, emitted only when that section's headword is a cross-language bridge word *and* the bridge is lossy: one line on what leaks.
+8. **一语道破 / epiphany** — one bilingual aphorism in a `>` blockquote. The two sections carry **distinct** aphorisms (different angles).
 
-**Cross-language / reverse lookup:** when input and section language differ, the section uses the truest equivalent word as its headword (e.g. Chinese input `缘分` → the English section deep-dives `serendipity / affinity / fated connection`).
+`## 印刻` (Imprint) closes every entry: one 24-hour **retrieval challenge** (generation effect — user must find/name/use the word in their own life), expressed in one Chinese line + one English line.
 
-## Gotcha to respect
+**Cross-language / reverse lookup:** when input and section language differ, that section uses the truest equivalent word as its headword (Chinese input `缘分` → English section may list 1–3 candidates, then deep-dives one, e.g. *serendipity*). Same-language sections never carry the bridge-loss bullet.
+
+**Etymology honesty rule:** disputed or folk etymologies must be flagged ("一说 / disputed"), never invented. This is a trust-critical property for a dictionary product.
+
+## Gotchas to respect
 
 - **Scope boundary / sibling skill.** This skill is for a *single word* (English or Chinese). Its `description` delegates **multi-word concepts and ideas** to a separate skill, `ljg-explain-concept` — that's the line, single lexical item vs. multi-word idea. Preserve it in the `description` (it's what Claude uses to route), and don't broaden this skill to cover concepts.
+- **Parse-point stability.** The three `##` headers (`中文` / `English` / `印刻`) and the bold bullet labels are the app's future parse anchors. `桥接损耗` / `Lost in the Bridge` is the only *optional* anchor — the app parser must tolerate its absence.
+- **No section creep.** The skill's power is compression: soul, borders, scene, strike, retrieve. Resist adding register notes, word families, frequency data, or other lexicographic apparatus.
 
-> Note: an earlier inconsistency (manifests describing removed "Museum Quality HTML cards / nuance spectrum / visual topology") has been reconciled — `plugin.json` / `marketplace.json` now match the bilingual markdown behavior. `SKILL.md` remains authoritative; keep the manifests in sync on future behavior changes.
+> Note: manifests (`plugin.json` / `marketplace.json`) were previously reconciled to the bilingual markdown behavior. `SKILL.md` remains authoritative; keep the manifests in sync on future behavior changes (the v2 description adds the memory-engineering framing).
