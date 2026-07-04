@@ -1,5 +1,5 @@
 ---
-name: ljg-explain-words
+name: ljg-explain-words-bilingual
 description: Deep-dive bilingual word mastery tool for adults — a "soul dictionary" that makes a single word unforgettable. Deconstructs a single word (English OR Chinese) into its original image, core metaphor, boundaries against near-synonyms, a lived scene, and a bilingual epiphany — output in BOTH Chinese and English as two parallel native deconstructions, closing with one retrieval challenge. Accepts either-language input and finds the truest cross-language equivalent (reverse lookup), flagging what the bridge loses. Use whenever the user asks to explain, master, remember, or never forget a specific single word — triggers include "解释这个词", "记住这个词", "这个词到底什么意思", "词根", "字源", "单词灵魂", "help me remember this word", "what does X *really* mean". Do NOT use for multi-word concepts or ideas (use ljg-explain-concept).
 ---
 
@@ -7,12 +7,12 @@ description: Deep-dive bilingual word mastery tool for adults — a "soul dictio
 
 <example>
 User: Deeply explain the word "Serendipity".
-Assistant: [Calls ljg-explain-words with "Serendipity"]
+Assistant: [Calls ljg-explain-words-bilingual with "Serendipity"]
 </example>
 
 <example>
 User: 解释一下「缘分」，帮我彻底记住它
-Assistant: [Calls ljg-explain-words with "缘分"]
+Assistant: [Calls ljg-explain-words-bilingual with "缘分"]
 </example>
 
 ## Instructions

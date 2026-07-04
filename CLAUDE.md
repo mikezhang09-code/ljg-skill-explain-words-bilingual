@@ -4,22 +4,22 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-A **Claude Code Skill plugin** ("单词灵魂解剖师" / Word Soul Master) that deconstructs a single word — **English or Chinese** — into its core semantics and a bilingual epiphany, engineered so the word **sticks in adult memory** (imagery + contrast + lived scene + retrieval). There is no application code, build, lint, or test — the entire product is a prompt. "Running" it means installing the plugin into Claude Code and invoking `/ljg-explain-words <word>`.
+A **Claude Code Skill plugin** ("单词灵魂解剖师" / Word Soul Master) that deconstructs a single word — **English or Chinese** — into its core semantics and a bilingual epiphany, engineered so the word **sticks in adult memory** (imagery + contrast + lived scene + retrieval). There is no application code, build, lint, or test — the entire product is a prompt. "Running" it means installing the plugin into Claude Code and invoking `/ljg-explain-words-bilingual <word>`.
 
 The long-term plan (not yet built) is to wrap this skill in a dead-simple, Google-style single-box **mobile dictionary** app. Phase 1 (current) is the bilingual skill; keep the skill's output structurally stable so it can later be parsed/cached into app cards without rework.
 
 ## Repository layout
 
-- `skills/ljg-explain-words/SKILL.md` — **the actual product.** YAML frontmatter (`name`, `description`) controls when the skill triggers; the Markdown body is the prompt that defines the output. Editing the skill = editing this file.
+- `skills/ljg-explain-words-bilingual/SKILL.md` — **the actual product.** YAML frontmatter (`name`, `description`) controls when the skill triggers; the Markdown body is the prompt that defines the output. Editing the skill = editing this file.
 - `.claude-plugin/plugin.json` — plugin manifest (name, author).
 - `.claude-plugin/marketplace.json` — marketplace manifest; `plugins[].source: "./"` points at this repo root.
 - `README.md` — install/usage docs (Chinese).
 
 Install/usage (from README):
 ```
-/plugin marketplace add lijigang/ljg-skill-explain-words
-/plugin install ljg-explain-words
-/ljg-explain-words Serendipity
+/plugin marketplace add mikezhang09-code/ljg-skill-explain-words-bilingual
+/plugin install ljg-explain-words-bilingual
+/ljg-explain-words-bilingual Serendipity
 ```
 
 ## The output contract (SKILL.md body) — v2

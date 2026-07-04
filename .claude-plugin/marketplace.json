@@ -1,5 +1,5 @@
 {
-  "name": "ljg-explain-words",
+  "name": "ljg-explain-words-bilingual",
   "description": "Word Soul Master — a \"soul dictionary\" for adults that deconstructs a single word into its original image, core metaphor, boundaries, lived scene, bilingual epiphany, and retrieval challenge.",
   "owner": {
     "name": "lijigang"
@@ -10,9 +10,9 @@
   },
   "plugins": [
     {
-      "name": "ljg-explain-words",
+      "name": "ljg-explain-words-bilingual",
       "source": "./",
-      "description": "Word soul master skill. Use /ljg-explain-words <word> to deeply deconstruct any English or Chinese word."
+      "description": "Word soul master skill. Use /ljg-explain-words-bilingual <word> to deeply deconstruct any English or Chinese word."
     }
   ]
 }

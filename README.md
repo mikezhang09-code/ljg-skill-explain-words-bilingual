@@ -1,4 +1,4 @@
-# ljg-skill-explain-words
+# ljg-skill-explain-words-bilingual
 
 单词灵魂解剖师 (Word Soul Master) — 一个 [Claude Code](https://docs.anthropic.com/en/docs/claude-code) Skill，深度解构一个词的核心语义，直击词的灵魂。**支持中英双语**：输入中文或英文皆可，输出「中文」「English」两个母语级版本以及一个「印刻」挑战。
 
@@ -21,7 +21,7 @@
 
 ```bash
 /plugin marketplace add mikezhang09-code/ljg-skill-explain-words-bilingual
-/plugin install ljg-explain-words
+/plugin install ljg-explain-words-bilingual
 ```
 
 ## 使用
@@ -29,8 +29,8 @@
 在 Claude Code 中输入（英文或中文皆可）：
 
 ```
-/ljg-explain-words Serendipity
-/ljg-explain-words 缘分
+/ljg-explain-words-bilingual Serendipity
+/ljg-explain-words-bilingual 缘分
 ```
 
 ## 输出示例
